@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="starlinePU" transaction-type="JTA">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<!-- <jta-data-source>${starline.ds}</jta-data-source> -->
+		<jta-data-source>java:jboss/datasources/starlineDS</jta-data-source>
+		<properties>
+			<property name="hbm2ddl.auto" value="validate" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.use_sql_comments" value="true" />
+			
+			<!-- Hibernate Envers (begin) -->
+			<!-- <property name="org.hibernate.envers.default_schema" value="transaccional_audit"/> -->
+			<!-- <property name="org.hibernate.envers.audit_strategy" value="org.hibernate.envers.strategy.ValidityAuditStrategy"/> -->
+			<!-- <property name="org.hibernate.envers.audit_strategy_validity_store_revend_timestamp" 
+				value="true"/> -->
+			<!-- <property name="org.hibernate.envers.revision_on_collection_change" 
+				value="false"/> -->
+			<!-- Cache de 2do nivel (begin) -->
+			<!-- <property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory"/> -->
+			<!-- <property name="hibernate.connection.release_mode" value="after_transaction"/> -->
+			<!-- <property name="hibernate.cache.use_second_level_cache" value="true"/> -->
+			<!-- <property name="hibernate.cache.use_query_cache" value="true"/> -->
+			<!-- <property name="hibernate.cache.region_prefix" value=""/> -->
+		</properties>
+	</persistence-unit>
+</persistence>
