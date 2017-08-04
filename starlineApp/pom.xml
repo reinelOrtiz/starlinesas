@@ -1,0 +1,56 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.rort.starline</groupId>
+		<artifactId>starline</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>starlineApp</artifactId>
+	<packaging>ear</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.rort.starline</groupId>
+			<artifactId>starlineWeb</artifactId>
+			<type>war</type>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rort.starline</groupId>
+			<artifactId>starlineCommons</artifactId>
+			<type>jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rort.starline</groupId>
+			<artifactId>starlineBusiness</artifactId>
+			<type>ejb</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<configuration>
+					<modules>
+						<webModule>
+							<groupId>com.rort.starline</groupId>
+							<artifactId>starlineWeb</artifactId>
+							<context-root>/platform</context-root>
+						</webModule>
+						<ejbModule>
+							<groupId>com.rort.starline</groupId>
+							<artifactId>starlineBusiness</artifactId>
+						</ejbModule>
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

@@ -1,0 +1,137 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.rort.starline</groupId>
+
+	<artifactId>starline</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>Starline Sas Project</name>
+
+	<modules>
+		<module>starlineApp</module>
+		<module>starlineCommons</module>
+		<module>starlineBusiness</module>
+		<module>starlineModel</module>
+		<module>starlineWeb</module>
+	</modules>
+
+	<properties>
+		<!-- maven default properties -->
+		<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+		<maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+
+		<encoding>UTF-8</encoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<ejb.generateClient>true</ejb.generateClient>
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+		<maven.ear.duplicateArtifactsBreakTheBuild>true</maven.ear.duplicateArtifactsBreakTheBuild>
+		<skipITs>true</skipITs>
+
+		<!-- dependency versions -->
+		<junit.version>4.12</junit.version>
+		<slf4j.version>1.7.25</slf4j.version>
+		<javaee.version>7.0</javaee.version>
+		<ejb.ejbVersion>3.2</ejb.ejbVersion>
+
+		<!-- plugin versions -->
+		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+		<maven-ear-plugin.version>2.10</maven-ear-plugin.version>
+		<maven-war-plugin.version>2.6</maven-war-plugin.version>
+		<maven-ejb-plugin.version>2.5</maven-ejb-plugin.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.rort.starline</groupId>
+				<artifactId>starlineWeb</artifactId>
+				<version>${project.version}</version>
+				<type>war</type>
+			</dependency>
+
+			<dependency>
+				<groupId>com.rort.starline</groupId>
+				<artifactId>starlineBusiness</artifactId>
+				<version>${project.version}</version>
+				<type>ejb</type>
+			</dependency>
+
+			<dependency>
+				<groupId>com.rort.starline</groupId>
+				<artifactId>starlineCommons</artifactId>
+				<version>${project.version}</version>
+				<type>jar</type>
+			</dependency>
+
+			<dependency>
+				<groupId>com.rort.starline</groupId>
+				<artifactId>starlineModel</artifactId>
+				<version>${project.version}</version>
+				<type>jar</type>
+			</dependency>
+
+			<!-- ************************************************ -->
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>${javaee.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-jdk14</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-ejb-plugin</artifactId>
+					<version>${maven-ejb-plugin.version}</version>
+					<configuration>
+						<clientExcludes>
+							<clientExclude>**/*Service.class</clientExclude>
+						</clientExcludes>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-ear-plugin</artifactId>
+					<version>${maven-ear-plugin.version}</version>
+					<configuration>
+						<fileNameMapping>no-version</fileNameMapping>
+						<version>7</version>
+						<defaultLibBundleDir>lib</defaultLibBundleDir>
+						<libraryDirectoryMode>NONE</libraryDirectoryMode>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>
